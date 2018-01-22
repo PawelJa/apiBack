@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class MemoryBookService {
 
+	private static long nextId = 1L;
 	private List<Book> list;
 
 	public MemoryBookService() {
@@ -52,4 +53,13 @@ public class MemoryBookService {
 		Book b = this.getById(id);
 		this.list.remove(b);
 	}
+
+
+	public Book add(Book book) {
+		book.setId(nextId++);
+		this.list.add(book);
+
+		return book;
+	}
+
 }
